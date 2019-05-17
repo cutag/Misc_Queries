@@ -38,13 +38,18 @@ let
                 Description = DescCln1,
                 Value = ValueCln1]
             else if Text.Range(Desc, 0, 4) = "FUND" then
-                [Statement = "Loan & Lease Receivables Credit Risk - Concentrations",
+                [Statement = "Funding",
                 Line = Text.Range(Desc,5,Text.PositionOf(Desc, "_", Occurrence.Last) - 5),
                 Description = DescCln1,
                 Value = ValueCln1]
             else if List.Contains({"NCCF", "NSFR"}, Text.Range(Desc, 0, 4)) then
                 [Statement = Text.Range(Desc, 0, 4),
                 Line = Text.Range(Desc, 5, 6),
+                Description = DescCln1,
+                Value = ValueCln1]
+            else if Text.Contains(Desc, "InvCRRisk") then
+                [Statement = "Investment Credit Risk",
+                Line = Text.Range(Desc,10,Text.PositionOf(Desc, "_", Occurrence.Last) - 10),
                 Description = DescCln1,
                 Value = ValueCln1]
             else
